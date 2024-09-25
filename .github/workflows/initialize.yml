@@ -1,0 +1,129 @@
+name: initialize
+
+on:
+  workflow_dispatch:
+    inputs:
+      labels:
+        description: 'Sync labels'
+        required: false
+        default: 'true'
+        type: boolean
+      folders:
+        description: 'Create folders'
+        required: false
+        default: 'true'
+        type: boolean
+      clean:
+        description: 'Delete this workflow after execution'
+        required: false
+        default: 'true'
+        type: boolean
+
+jobs:
+  folders:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.folders == 'true' }}
+    permissions: write-all
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create workshop folders 
+        run: |
+          for week in {01..12}; do \
+          for day in {1..5}; do \
+          path="week-$week/day-$day"; 
+          mkdir -p $path; 
+          touch $path/.gitkeep; \
+          done;
+          done
+      - name: Commit workshop folders
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "github action"
+          git pull
+          git add .
+          git commit -am "added workshop folders"
+          git push
+
+  labels:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.labels == 'true' }}
+    permissions: write-all
+    steps:
+      - name: Delete default labels
+        run: |
+          for name in duplicate enhancement "good%20first%20issue" "help%20wanted" question; do \
+          curl --request DELETE \
+          --url https://api.github.com/repos/${{ github.repository }}/labels/$name \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --fail; \
+          done
+      - name: Change the invalid label to review
+        run: |
+          curl --request PATCH \
+          --url https://api.github.com/repos/${{ github.repository }}/labels/invalid \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{"name": "review", "description": "Code review"}' \
+          --fail
+      - name: Change the documentation label to todo
+        run: |
+          curl --request PATCH \
+          --url https://api.github.com/repos/${{ github.repository }}/labels/documentation \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{ "name": "todo", "description": "Todo task" }' \
+          --fail
+      - name: Add week labels
+        run: |
+          for i in {1..12}; do n=$(printf "%02d" $i); \
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/labels \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data "{\"name\": \"week-${n}\", \"color\": \"d7fdac\", \"description\": \"Week #${i}\"}" \
+          --fail; \
+          done
+
+  clean-up:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.clean == 'true' && github.event.inputs.folders == 'true' }}
+    needs: folders
+    permissions: write-all
+    steps:
+      - uses: actions/checkout@v2
+      - name: Delete the original readme and assets
+        run: |
+          rm -rf README.md assets
+      - name: Remove the initialize workflow
+        run: |
+          rm -f .github/workflows/initialize.yml
+      - name: Commit the deletion
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "github action"
+          git pull
+          git add .
+          git commit -am "deleted the initialize workflow"
+          git push
+
+  clean-up2:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.clean == 'true' && github.event.inputs.folders == 'false' }}
+    permissions: write-all
+    steps:
+      - uses: actions/checkout@v2
+      - name: Delete the original readme and assets
+        run: |
+          rm -rf README.md assets
+      - name: Remove the initialize workflow
+        run: |
+          rm -f .github/workflows/initialize.yml
+      - name: Commit the deletion
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "github action"
+          git pull
+          git add .
+          git commit -am "deleted the initialize workflow"
+          git push

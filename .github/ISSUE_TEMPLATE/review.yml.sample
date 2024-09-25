@@ -1,0 +1,41 @@
+name: 🧐 Code Review
+description: Create a code review entry
+title: "Review <title>"
+labels: [review]
+body:
+- type: textarea
+  id: review
+  attributes:
+    label: Review 
+    description: A clear and concise code review  
+  validations:
+    required: true
+- type: checkboxes
+  id: type
+  attributes:
+    label: Type
+    options:
+    - label: Coding style
+    - label: Naming
+    - label: Logic
+    - label: Structure
+    - label: Other
+- type: textarea
+  id: context
+  attributes:
+    label: URLs
+    description: Links to the relevant files, for example [Main.java](https://github.com/green-fox-academy/username/blob/master/week-01/day-3/src/Main.java#L1)
+    render: markdown
+  validations:
+    required: false
+- type: checkboxes
+  id: check
+  attributes:
+    label: Make sure you have:
+    options:
+      - label: Provided an appropriate title
+        required: true
+      - label: Set the correct week label
+        required: true
+  validations:
+    required: true
