@@ -1,4 +1,5 @@
 import './App.css'
+import {NavLink} from "react-router-dom";
 
 function Login() {
     return (
@@ -11,6 +12,7 @@ function Login() {
                 <input type={"password"}></input>
                 <button type={"submit"}>Login</button>
             </form>
+            <NavLink to={"/"}>Discard</NavLink>
         </>
     )
 }
