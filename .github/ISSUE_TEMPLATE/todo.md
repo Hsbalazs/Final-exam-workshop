@@ -10,4 +10,4 @@ assignees: ''
 A clear and concise description of what the task is.
 
 ## Context
-Links to the relevant files, for example [Main.java](https://github.com/green-fox-academy/username/blob/master/week-01/day-3/src/Main.java#L1)
+Links to the relevant files, for example [org.example.backend.MainApplication.java](https://github.com/green-fox-academy/username/blob/master/week-01/day-3/src/Main.java#L1)
