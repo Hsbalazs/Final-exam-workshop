@@ -1,7 +1,7 @@
 import './App.css'
-import {createBrowserRouter, Link, RouterProvider} from "react-router-dom";
-import Login from "./Login";
-import Register from "./register.tsx";
+import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
+import Login from "./page/Login";
+import Register from "./page/Register";
 
 function Main() {
     return (

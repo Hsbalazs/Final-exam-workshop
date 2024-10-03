@@ -9,3 +9,25 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: marketplace
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # API_BACKEND_URL is the URL of the backend API
+        - API_BACKEND_URL=http://localhost:8080
+    ports:
+      - 5173:80
+
+
+  backend:
+    build: ./backend
+    ports:
+      - 8080:8080
+    environment:
+      - DATABASE_URL=jdbc:postgresql://localhost:5432/marketplace
+      - DATABASE_USER=user
+      - DATABASE_PASSWORD=password
+      - CORS_URLS=http://localhost:5173
+    depends_on:
+      - postgres-db
