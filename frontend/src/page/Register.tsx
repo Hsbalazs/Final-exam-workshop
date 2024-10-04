@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import '../App.css'
-import {NavLink, useNavigate} from "react-router-dom";
-import register from '../httpClient';
+import { NavLink, useNavigate } from "react-router-dom";
+import { register } from '../httpClient';
 import { Button, useToast } from '@chakra-ui/react'
 import { PasswordStrengthValidator } from '../validator/PasswordStrengthValidator';
 
@@ -27,7 +27,6 @@ function Register() {
         try {
             await register(user);
             setUser({name: "", password: ""})
-            navigate("/login")
             toast({
                 title: 'Successful registration!👍',
                 description: "User successfully registered.",

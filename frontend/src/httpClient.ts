@@ -22,4 +22,19 @@ const register = async (request: RegisterRequest) => {
     return instance.post<RegisterResponse>("/register", request);
 }
 
-export default register
+type LoginRequest = {
+    name: string;
+    password: string;
+};
+
+type LoginResponse = {
+    token: string;
+}
+
+const login = async (Request: LoginRequest) => {
+    const response = await instance.post<LoginResponse>("/login", Request);
+    instance.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
+    return response;
+}
+
+export {register, login}
