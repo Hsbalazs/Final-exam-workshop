@@ -27,6 +27,7 @@ function Register() {
         try {
             await register(user);
             setUser({name: "", password: ""})
+            navigate("/")
             toast({
                 title: 'Successful registration!👍',
                 description: "User successfully registered.",
