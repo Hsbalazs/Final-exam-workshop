@@ -12,9 +12,5 @@ public interface UserService {
 
   LoginResponseDto login(LoginRequestDto loginRequestDto);
 
-//  <groupId>org.example</groupId>
-//  <artifactId>Final-exam-workshop</artifactId>
-//  <version>1.0-SNAPSHOT</version>
-//  <name>Archetype - Final-exam-workshop</name>
-//  <url>http://maven.apache.org</url>
+
 }

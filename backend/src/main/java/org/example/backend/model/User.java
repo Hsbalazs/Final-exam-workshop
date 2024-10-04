@@ -14,11 +14,11 @@ import lombok.experimental.SuperBuilder;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Table(name = "_user")
-public class User {
+public class User{
   private String name;
   private String password;
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @OneToMany(mappedBy = "user")
