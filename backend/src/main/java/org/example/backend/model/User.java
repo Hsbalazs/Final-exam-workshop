@@ -1,5 +1,7 @@
 package org.example.backend.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,4 +20,7 @@ public class User {
   @Id
   @GeneratedValue
   private Long id;
+
+  @OneToMany(mappedBy = "user")
+  private List<Item> items;
 }
