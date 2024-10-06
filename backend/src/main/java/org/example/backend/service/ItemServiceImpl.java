@@ -1,5 +1,7 @@
 package org.example.backend.service;
 
+import java.util.List;
+
 import org.example.backend.dto.AddItemRequestDto;
 import org.example.backend.dto.AddItemResponseDto;
 import org.example.backend.model.Item;
@@ -23,5 +25,10 @@ public class ItemServiceImpl implements ItemService {
         item.setPrice(addItemRequestDto.price());
         item.setUser(userRepository.findByName(name));
         return new AddItemResponseDto(itemRepository.save(item).getId());
+    }
+
+    @Override
+    public List<Item> getItems() {
+        return itemRepository.findAll();
     }
 }

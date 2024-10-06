@@ -6,5 +6,7 @@ import org.example.backend.dto.AddItemResponseDto;
 public interface ItemService {
 
     AddItemResponseDto add(String name, AddItemRequestDto addItemRequestDto);
+
+    Object getItems();
     
 }

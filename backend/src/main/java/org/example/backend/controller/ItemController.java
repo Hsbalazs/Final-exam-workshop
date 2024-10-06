@@ -8,6 +8,7 @@ import org.example.backend.service.ItemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -23,4 +24,8 @@ public class ItemController {
         return ResponseEntity.status(HttpStatus.OK).body(itemService.add(user.getName(), addItemRequestDto));
     }
     
+    @GetMapping("/items")
+    ResponseEntity<?> getItems() {
+        return ResponseEntity.status(HttpStatus.OK).body(itemService.getItems());
+    }
 }
