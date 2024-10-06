@@ -29,7 +29,7 @@ function Login() {
             // await fetch()
             const { data } = await login(loginFormData);
             setAuth(data.token);
-            navigate("/");
+            navigate("/addItem");
         } catch (error) {
           // handle your error
           if (error instanceof AxiosError) {

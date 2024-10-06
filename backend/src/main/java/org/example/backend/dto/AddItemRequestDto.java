@@ -4,7 +4,7 @@ public record AddItemRequestDto(
     String name,
     String description,
     String photoUrl,
-    int price
+    String price
 ) {
     
 }

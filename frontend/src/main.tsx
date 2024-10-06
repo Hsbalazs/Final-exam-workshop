@@ -5,9 +5,9 @@ import './index.css'
 import { ChakraProvider } from '@chakra-ui/react'
 
 createRoot(document.getElementById('root')!).render(
-  <ChakraProvider resetCSS={false} >
+  <ChakraProvider resetCSS={false}>
     <StrictMode>
       <App />
     </StrictMode>
-  </ChakraProvider>,
+  </ChakraProvider>
 )

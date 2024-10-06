@@ -26,7 +26,7 @@ public class Item {
     private String name;
     private String description;
     private String photUrl;
-    private int price;
+    private String price;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

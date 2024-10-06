@@ -2,6 +2,7 @@ import './App.css'
 import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
 import Login from "./page/Login";
 import Register from "./page/Register";
+import AddItem from './page/AddItem';
 
 function Main() {
     return (
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login />,
+    },
+    {
+        path: "/addItem",
+        element: <AddItem />,
     },
 ]);
 

@@ -58,7 +58,6 @@ function Register() {
                 <PasswordStrengthValidator password={user.password} />
                 <Button type="submit">Register</Button>
             </form>
-            <NavLink to={"/login"}>Login</NavLink>
             <NavLink to={"/"}>Discard</NavLink>
         </>
     )

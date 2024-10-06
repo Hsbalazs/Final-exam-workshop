@@ -37,4 +37,19 @@ const login = async (Request: LoginRequest) => {
     return response;
 }
 
-export {register, login}
+type AddItemRequest = {
+    name: string,
+    description: string,
+    photoUrl: string,
+    price: string
+}
+
+type AddItemResponse = {
+    id: number
+}
+
+const addItem = (request: AddItemRequest) => {
+    return instance.post<AddItemResponse>("/addItem", request)
+}
+
+export {register, login, addItem}
