@@ -34,7 +34,7 @@ function AddItem() {
         try {
             await addItem(item);
             setItem({name: "", description: "", photoUrl: "", price: ""})
-            navigate("/")
+            navigate("/itemList")
             toast({
                 title: 'Successfully added!👍',
                 description: 'Item successfully added.',
@@ -64,10 +64,9 @@ function AddItem() {
                 <label htmlFor='photoUrl'>Photo:</label>
                 <input type="file" name='photoUrl' value={item.photoUrl} onChange={handleItemChange}></input>
                 <label htmlFor='price'>Item price:</label>             
-                <CurrencyInput name='price' value={item.price} onChange={handlePriceChange}/>
+                <CurrencyInput value={item.price} onChange={handlePriceChange}/>
                 <Button type="submit">Save</Button>
             </form>
-            <NavLink to={"/login"}>Login</NavLink>
             <NavLink to={"/"}>Discard</NavLink>
         </>
     )

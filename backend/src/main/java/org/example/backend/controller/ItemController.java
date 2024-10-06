@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import org.example.backend.dto.AddItemRequestDto;
 import org.example.backend.dto.AddItemResponseDto;
+import org.example.backend.repository.ItemRepository;
 import org.example.backend.service.ItemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class ItemController {
         return ResponseEntity.status(HttpStatus.OK).body(itemService.add(user.getName(), addItemRequestDto));
     }
     
-    @GetMapping("/items")
+    @GetMapping("/itemList")
     ResponseEntity<?> getItems() {
         return ResponseEntity.status(HttpStatus.OK).body(itemService.getItems());
     }

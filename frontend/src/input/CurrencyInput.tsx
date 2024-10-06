@@ -24,7 +24,7 @@ type CurrencyInputProps = {
 const CurrencyInput: React.FC<CurrencyInputProps> = ({ value, onChange }) => (
   <MaskedInput
     mask={numberMask}
-    name="price"
+    name='price'
     value={value}
     onChange={onChange}
     placeholder="Enter a number"

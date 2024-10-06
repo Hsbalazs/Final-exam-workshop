@@ -52,4 +52,20 @@ const addItem = (request: AddItemRequest) => {
     return instance.post<AddItemResponse>("/addItem", request)
 }
 
-export {register, login, addItem}
+export type ItemDetails = {
+    name: string,
+    description: string,
+    photoUrl: string,
+    price: string
+}
+
+type ItemListResponse = {
+    items: ItemDetails[]
+}
+
+const itemList = async () => {
+    const response = await instance.get<ItemListResponse>("/itemList")
+    return response.data
+}
+
+export {register, login, addItem, itemList}

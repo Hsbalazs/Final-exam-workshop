@@ -3,6 +3,7 @@ import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
 import Login from "./page/Login";
 import Register from "./page/Register";
 import AddItem from './page/AddItem';
+import { ItemList } from './page/ItemList';
 
 function Main() {
     return (
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
     {
         path: "/addItem",
         element: <AddItem />,
+    },
+    {
+        path: "/itemList",
+        element: <ItemList />,
     },
 ]);
 
